@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var connection = $.hubConnection();
+            connection.re
+            var messageProxy = connection.createHubProxy("messageHub");
+            var c = messageProxy.on("addMessage", function (name, message, datetime) {
+                //alert(connection["sex"]);
+                if (name == "黄晓柠") {
+                    $("#contentMessage").append("<span style='color:green;'>" + name + "   " + datetime + "</span> <br/>" + message + "<br/>");
+                }
+                else {
+                    $("#contentMessage").append("<span style='color:blue;'>" + name + "   " + datetime + "</span> <br/>" + message + "<br/>");
+                }
+            });
+            connection.qs = { "version": "1.0" };
+            connection["sex"] = "男";
+            connection.start().done(function () {
+                $("#sendM").click(function () {
+                    messageProxy.invoke("joinGroup")
+                    messageProxy.invoke("sendMessage", $("#name").val(), $("#content").val());
+                    if ($("#name").val() == "黄晓柠") {
+                        $('#name')[0].selectedIndex = 1;
+                    }
+                    else {
+                        $('#name')[0].selectedIndex = 0;
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                To learn more about ASP.NET MVC visit
+                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET MVC.
+                If you have any questions about ASP.NET MVC visit
+                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">our forums</a>.
+            </p>
+        </div>
+    </section>
+}
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>
+<script type="text/javascript" src="~/signalr/hubs"></script>
+<h3>We suggest the following:</h3>
+<ol class="round">
+    <li class="one" id="contentMessage">
+        <h3>聊天信息</h3>
+    </li>
+
+    <li class="two">用户：<select id="name">
+        <option value="黄晓柠">黄晓柠</option>
+        <option value="日尧木宁">日尧木宁</option>
+    </select>
+        聊天内容：<input type="text" id="content" name="content" />
+        <input id="sendM" type="button" value="发送" />
+    </li>
+
+    <li class="three">
+        <h5>Find Web Hosting</h5>
+        You can easily find a web hosting company that offers the right mix of features
+        and price for your applications.
+        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+    </li>
+</ol>

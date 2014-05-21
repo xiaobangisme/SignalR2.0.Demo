@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>log4net.SignalR</id>
+    <version>0.1.4798.24605</version>
+    <title>log4net.SignalR</title>
+    <authors>Chris Fulstow</authors>
+    <owners>Chris Fulstow</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/MatthewSteeples/log4net.SignalR</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Log4Net Appender for sending log events from server to browser</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <language />
+    <tags>logging</tags>
+    <dependencies>
+      <dependency id="log4net" version="2.0.0" />
+      <dependency id="Microsoft.AspNet.SignalR.Core" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>
